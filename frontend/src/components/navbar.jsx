@@ -53,22 +53,26 @@ const loadCart = async () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-black text-white shadow-lg">
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-gray-200 shadow-sm">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-4">
         
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold tracking-wide hover:text-gray-300 transition"
+          className="text-2xl font-bold tracking-wide text-gray-900 hover:text-gray-600 transition"
         >
           Adiii Store
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 text-gray-600">
           
           {/* Cart */}
-          <Link to="/cart" className="relative">
+          <Link
+            to="/cart"
+            className="relative flex items-center gap-2 rounded-full border border-transparent px-3 py-1 hover:border-gray-200 transition"
+          >
             <span className="text-2xl">🛒</span>
+            <span className="font-semibold">Cart</span>
 
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 min-w-[18px] h-[18px] bg-red-600 text-white text-xs font-bold flex items-center justify-center rounded-full">
@@ -80,17 +84,23 @@ const loadCart = async () => {
           {/* Auth */}
           {!userId ? (
             <>
-              <Link to="/login" className="hover:text-gray-300">
+              <Link
+                to="/login"
+                className="px-3 py-1 rounded-lg text-sm font-medium hover:text-gray-900 transition"
+              >
                 Login
               </Link>
-              <Link to="/signup" className="hover:text-gray-300">
+              <Link
+                to="/signup"
+                className="px-3 py-1 rounded-lg text-sm font-medium hover:text-gray-900 transition"
+              >
                 Signup
               </Link>
             </>
           ) : (
             <button
               onClick={logout}
-              className="bg-red-600 px-4 py-1.5 rounded hover:bg-red-700 transition"
+              className="bg-red-500 px-4 py-1.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-red-600 transition"
             >
               Logout
             </button>

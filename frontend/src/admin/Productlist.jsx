@@ -5,18 +5,15 @@ import { Link } from "react-router-dom";
 function ProductList() {
   const [products, setProducts] = useState([]);
 
- const loadProduct = async () => {
-  try {
-    const response = await api.get("/Product");
-
-    console.log("RESPONSE.DATA 👉", response.data);
-
-    setProducts(response.data.Getproducts || []);
-  } catch (err) {
-    console.error("Error loading products", err);
-  }
-};
-
+  const loadProduct = async () => {
+    try {
+      const response = await api.get("/Product");
+      console.log("RESPONSE.DATA 👉", response.data);
+      setProducts(response.data.Getproducts || []);
+    } catch (err) {
+      console.error("Error loading products", err);
+    }
+  };
 
   const deleteProduct = async (_id) => {
     try {
@@ -32,68 +29,83 @@ function ProductList() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900 p-8 text-white">
-      <div className="justify-between flex items-center mb-6">
+    <div className="min-h-screen bg-gray-100 px-6 py-10">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <div className="flex flex-col gap-4 rounded-3xl bg-white p-6 shadow-lg md:flex-row md:items-center md:justify-between">
+          <h1 className="text-3xl font-bold text-gray-900">
+            📦 Product List
+          </h1>
 
-      <h1 className="text-3xl font-bold mb-6">📦 Product List</h1>
-      <div className="mb-6">
-        <Link   to="/admin/addproduct"
-          className="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          <Link
+            to="/admin/addproduct"
+            className="rounded-2xl bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow transition hover:bg-blue-700"
           >
-          ➕ Add New Product
-        </Link>
-          </div>
-      </div>
+            ✚ Add New Product
+          </Link>
+        </div>
 
-      <div className="bg-slate-800 rounded-xl shadow-lg overflow-h_idden">
-        <table className="w-full">
-          <thead className="bg-slate-700 text-slate-300">
-            <tr>
-              <th className="p-4 text-left">Title</th>
-              <th className="p-4 text-left">Price</th>
-              <th className="p-4 text-left">Stock</th>
-              <th className="p-4 text-left">Category</th>
-              <th className="p-4 text-left">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {products.length === 0 ? (
+        <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg">
+          <table className="w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
               <tr>
-                <td colSpan="5" className="p-4 text-center text-gray-400">
-                  No products found
-                </td>
+                <th className="p-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Title
+                </th>
+                <th className="p-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Price
+                </th>
+                <th className="p-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Stock
+                </th>
+                <th className="p-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Category
+                </th>
+                <th className="p-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  Actions
+                </th>
               </tr>
-            ) : (
-              products.map((product) => (
-                <tr
-                  key={product._id}
-                  className="border-b border-slate-700 hover:bg-slate-700"
-                >
-                  <td className="p-4">{product.title}</td>
-                  <td className="p-4">₹{product.price}</td>
-                  <td className="p-4">{product.stock}</td>
-                  <td className="p-4">{product.category}</td>
-                  <td className="p-4 flex gap-3">
-                    <Link
-                      to={`/admin/Product/edit/${product._id}`}
-                      className="text-blue-400 hover:underline"
-                    >
-                      Edit
-                    </Link>
+            </thead>
 
-                    <button
-                      onClick={() => deleteProduct(product._id)}
-                      className="text-red-400 hover:underline"
-                    >
-                      Delete
-                    </button>
+            <tbody className="bg-white text-sm text-gray-700">
+              {products.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="p-6 text-center text-gray-400">
+                    No products found
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                products.map((product) => (
+                  <tr
+                    key={product._id}
+                    className="border-b last:border-b-0 hover:bg-gray-50"
+                  >
+                    <td className="p-4">{product.title}</td>
+                    <td className="p-4 font-semibold text-gray-900">
+                      ₹{product.price}
+                    </td>
+                    <td className="p-4">{product.stock}</td>
+                    <td className="p-4">{product.category}</td>
+                    <td className="p-4 flex gap-3">
+                      <Link
+                        to={`/admin/Product/edit/${product._id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        Edit
+                      </Link>
+
+                      <button
+                        onClick={() => deleteProduct(product._id)}
+                        className="text-red-500 hover:text-red-600"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

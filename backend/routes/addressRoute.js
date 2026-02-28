@@ -7,4 +7,4 @@ const Routes = express.Router();
 Routes.post('/add', SaveAddress);
 Routes.get('/:userId', getAddress);
 
-export default Routes ;
+export default Routes;
