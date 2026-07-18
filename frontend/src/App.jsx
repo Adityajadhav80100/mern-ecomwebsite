@@ -1,18 +1,19 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import Home from "./pages/home";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
-import ProductDetail from "./pages/productDetail";
-
-import ProductList from "./admin/Productlist";
-import AddProduct from "./admin/addProduct";
-import UpdateProduct from "./admin/updateProduct";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ProductDetail from "./pages/ProductDetail";
 import Carts from "./pages/carts";
-import Navbar from "./components/navbar";
 import CheckoutAddress from "./pages/checkoutAddress";
 import Checkout from "./pages/checkout";
 import OrderSuccess from "./pages/orderSuccses";
+
+import ProductList from "./admin/ProductList";
+import AddProduct from "./admin/addProduct";
+import UpdateProduct from "./admin/updateProduct";
+
+import Navbar from "./components/navbar";
 
 /* ✅ Layout component (must start with CAPITAL letter) */
 function Layout() {
