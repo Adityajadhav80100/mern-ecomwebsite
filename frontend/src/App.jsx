@@ -9,7 +9,7 @@ import CheckoutAddress from "./pages/checkoutAddress";
 import Checkout from "./pages/checkout";
 import OrderSuccess from "./pages/orderSuccses";
 
-import ProductList from "./admin/ProductList";
+import ProductList from "./admin/Productlist";
 import AddProduct from "./admin/addProduct";
 import UpdateProduct from "./admin/updateProduct";
 
